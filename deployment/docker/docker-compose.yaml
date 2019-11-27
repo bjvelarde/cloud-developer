@@ -1,0 +1,46 @@
+version: "3"
+services:
+  reverseproxy:
+      image: benjvelarde/reverseproxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - backend-user
+        - backend-feed
+  backend-user:
+    image: benjvelarde/udacity-restapi-user
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENV
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_DATABASE
+      - DB_HOST
+      - DB_DIALECT
+      - AWS_REGION
+      - AWS_PROFILE
+      - AWS_S3_BUCKET
+      - JWT_SECRET
+      - URL
+  backend-feed:
+    image: benjvelarde/udacity-restapi-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENV
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_DATABASE
+      - DB_HOST
+      - DB_DIALECT
+      - AWS_REGION
+      - AWS_PROFILE
+      - AWS_S3_BUCKET
+      - JWT_SECRET
+      - URL
+  frontend:
+    image: benjvelarde/udacity-frontend:local
+    ports:
+      - "8100:80"
