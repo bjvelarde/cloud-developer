@@ -5,8 +5,8 @@ data:
   AWS_PROFILE: udacity
   AWS_REGION: us-east-1
   JWT_SECRET: supersecret.jwtsecret
-  POSTREGSS_DB: udagramvelardedev
+  POSTGRESS_DB: udagramvelardedev
   POSTGRESS_HOST: udagramvelardedev.cyk8q6gjbwc3.us-east-1.rds.amazonaws.com
-  URL:
+  URL: http://localhost:8100
 metadata:
   name: env-config
